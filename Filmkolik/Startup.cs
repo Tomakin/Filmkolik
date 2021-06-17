@@ -1,3 +1,6 @@
+using Filmkolik.Library.Functions;
+using Filmkolik.Services.Abstract;
+using Filmkolik.Services.Concrete;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,18 +13,23 @@ namespace Filmkolik
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment _env)
         {
             Configuration = configuration;
+            env = _env;
         }
-
+        private IWebHostEnvironment env;
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            SettingsFn.CreateDatabaseService(services, Configuration, env);
 
             services.AddControllersWithViews();
+
+            services.AddScoped<IDatabaseService, EfDatabaseService>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

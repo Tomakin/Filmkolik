@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Filmkolik.Services.Abstract;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,12 @@ namespace Filmkolik.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        IDatabaseService _db;
+
+        public UsersController(IDatabaseService db)
+        {
+            _db = db;
+        }
         // GET: api/<UsersController>
         [HttpGet]
         public IEnumerable<string> Get()

@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Filmkolik", "Filmkolik\Filmkolik.csproj", "{0AE24380-938C-41E4-930C-B573F6D874CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filmkolik.Entities", "Filmkolik.Entities\Filmkolik.Entities.csproj", "{5D83DC54-787D-48A9-92BE-D38A90DF3492}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filmkolik.Data", "Filmkolik.Data\Filmkolik.Data.csproj", "{D01EE440-9AC9-4021-86DE-49DE2FA59A35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filmkolik.Core", "Filmkolik.Core\Filmkolik.Core.csproj", "{D31A13D4-D479-4491-9F5B-01D6A5BE199B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filmkolik.Services", "Filmkolik.Services\Filmkolik.Services.csproj", "{A1768F04-A2F1-4274-9C68-C180C9339DE1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0AE24380-938C-41E4-930C-B573F6D874CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AE24380-938C-41E4-930C-B573F6D874CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AE24380-938C-41E4-930C-B573F6D874CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AE24380-938C-41E4-930C-B573F6D874CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D83DC54-787D-48A9-92BE-D38A90DF3492}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D83DC54-787D-48A9-92BE-D38A90DF3492}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D83DC54-787D-48A9-92BE-D38A90DF3492}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D83DC54-787D-48A9-92BE-D38A90DF3492}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D01EE440-9AC9-4021-86DE-49DE2FA59A35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D01EE440-9AC9-4021-86DE-49DE2FA59A35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D01EE440-9AC9-4021-86DE-49DE2FA59A35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D01EE440-9AC9-4021-86DE-49DE2FA59A35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D31A13D4-D479-4491-9F5B-01D6A5BE199B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D31A13D4-D479-4491-9F5B-01D6A5BE199B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D31A13D4-D479-4491-9F5B-01D6A5BE199B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D31A13D4-D479-4491-9F5B-01D6A5BE199B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1768F04-A2F1-4274-9C68-C180C9339DE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1768F04-A2F1-4274-9C68-C180C9339DE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1768F04-A2F1-4274-9C68-C180C9339DE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1768F04-A2F1-4274-9C68-C180C9339DE1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BBE19F61-93A2-4BE4-8DDF-6C18819CCE9F}
+	EndGlobalSection
+EndGlobal
