@@ -1,4 +1,5 @@
 using Filmkolik.Library.Functions;
+using Filmkolik.Library.Helpers;
 using Filmkolik.Services.Abstract;
 using Filmkolik.Services.Concrete;
 using Microsoft.AspNetCore.Builder;
@@ -29,7 +30,11 @@ namespace Filmkolik
 
             services.AddControllersWithViews();
 
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+
             services.AddScoped<IDatabaseService, EfDatabaseService>();
+
+            services.AddScoped<IUserService, UserService>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
