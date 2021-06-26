@@ -12,6 +12,7 @@ namespace Filmkolik.ClassModels
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Username { get; set; }
+        public string Role { get; set; }
         public string Token { get; set; }
 
 
@@ -21,6 +22,7 @@ namespace Filmkolik.ClassModels
             FirstName = user.FirstName;
             LastName = user.LastName;
             Username = user.Username;
+            Role = user.RolString;
             Token = token;
         }
     }

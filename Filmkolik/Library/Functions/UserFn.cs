@@ -2,6 +2,7 @@
 using Filmkolik.Entities.Entity;
 using Filmkolik.Library.Helpers;
 using Filmkolik.Services.Abstract;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -20,8 +21,8 @@ namespace Filmkolik.Library.Functions
     public class UserService : IUserService
     {
         IDatabaseService _db;
-        readonly AppSettings _appSettings;
-        public UserService(IDatabaseService db, AppSettings appSettings)
+        readonly IOptions<AppSettings> _appSettings;
+        public UserService(IDatabaseService db, IOptions<AppSettings> appSettings)
         {
             _db = db;
             _appSettings = appSettings;
@@ -44,7 +45,7 @@ namespace Filmkolik.Library.Functions
         {
             // generate token that is valid for 7 days
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            var key = Encoding.ASCII.GetBytes(_appSettings.Value.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] { new Claim("id", user.ID.ToString()), new Claim("role", user.RolString) }),

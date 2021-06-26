@@ -10,16 +10,16 @@ namespace Filmkolik.Entities.Entity
     {
         public static Dictionary<Roller, string> roleString = new Dictionary<Roller, string>()
         {
-            { Roller.Admin, "Role_Admin"},
-            { Roller.User, "Role_User"},
-            { Roller.SuperUser, "Role_SuperUser"},
+            { Roller.Admin, "Admin_Role"},
+            { Roller.StarUser, "StarUser_Role"},
+            { Roller.FilmUser, "FilmUser_Role"},
         };
 
         public enum Roller
         {
             Admin = 1,
-            User = 2,
-            SuperUser = 3,
+            StarUser = 2,
+            FilmUser = 3,
         }
     }
 }
