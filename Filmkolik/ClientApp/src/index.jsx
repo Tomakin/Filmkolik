@@ -7,6 +7,7 @@ import { App } from './App';
 import { configureFakeBackend } from './_helpers';
 configureFakeBackend();
 
+
 render(
     <App />,
     document.getElementById('app')
