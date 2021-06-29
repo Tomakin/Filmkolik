@@ -3,15 +3,15 @@ import { Role } from './'
 export function configureFakeBackend() {
     let users = [
         { id: 1, username: 'admin', password: 'admin', firstName: 'Admin', lastName: 'User', role: Role.Admin },
-        { id: 2, username: 'film', password: 'user', firstName: 'Normal', lastName: 'User', role: Role.FilmUser },
-        { id: 3, username: 'star', password: 'user', firstName: 'Normal', lastName: 'User', role: Role.StarUser },
+        { id: 2, username: 'film', password: 'user', firstName: 'Film', lastName: 'User', role: Role.FilmUser },
+        { id: 2, username: 'star', password: 'user', firstName: 'Star', lastName: 'User', role: Role.StarUser }
     ];
     let realFetch = window.fetch;
     window.fetch = function (url, opts) {
         const authHeader = opts.headers['Authorization'];
         const isLoggedIn = authHeader && authHeader.startsWith('Bearer fake-jwt-token');
         const roleString = isLoggedIn && authHeader.split('.')[1];
-        const role = roleString ? Role[roleString.replace('_Role', '')] : null;
+        const role = roleString ? Role[roleString] : null;
 
         return new Promise((resolve, reject) => {
             // wrap in timeout to simulate server api call
@@ -31,27 +31,27 @@ export function configureFakeBackend() {
                     });
                 }
 
-                // get user by id - admin or user (user can only access their own record)
-                if (url.match(/\/users\/\d+$/) && opts.method === 'GET') {
-                    if (!isLoggedIn) return unauthorised();
+                // // get user by id - admin or user (user can only access their own record)
+                // if (url.match(/\/users\/\d+$/) && opts.method === 'GET') {
+                //     if (!isLoggedIn) return unauthorised();
 
-                    // get id from request url
-                    let urlParts = url.split('/');
-                    let id = parseInt(urlParts[urlParts.length - 1]);
+                //     // get id from request url
+                //     let urlParts = url.split('/');
+                //     let id = parseInt(urlParts[urlParts.length - 1]);
 
-                    // only allow normal users access to their own record
-                    const currentUser = users.find(x => x.role === role);
-                    if (id !== currentUser.id && role !== Role.Admin) return unauthorised();
+                //     // only allow normal users access to their own record
+                //     const currentUser = users.find(x => x.role === role);
+                //     if (id !== currentUser.id && role !== Role.Admin) return unauthorised();
 
-                    const user = users.find(x => x.id === id);
-                    return ok(user);
-                }
+                //     const user = users.find(x => x.id === id);
+                //     return ok(user);
+                // }
 
-                // get all users - admin only
-                if (url.endsWith('/users') && opts.method === 'GET') {
-                    if (role !== Role.Admin) return unauthorised();
-                    return ok(users);
-                }
+                // // get all users - admin only
+                // if (url.endsWith('/users') && opts.method === 'GET') {
+                //     if (role !== Role.Admin) return unauthorised();
+                //     return ok(users);
+                // }
 
                 // pass through any requests not handled above
                 realFetch(url, opts).then(response => resolve(response));

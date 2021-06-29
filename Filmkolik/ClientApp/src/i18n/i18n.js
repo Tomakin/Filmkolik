@@ -16,9 +16,9 @@ const i18n = {
     withSuffix: "With Suffix",
     viewSource: "View Source",
     starDetails: "Star Details",
+    stars:"Stars",
     filmDetails: "Film Details",
     films: "films",
-    logout: "Logout"
   },
   tr: {
     title: "Filmkolik",
@@ -37,9 +37,9 @@ const i18n = {
     withSuffix: "With Suffix",
     viewSource: "View Source",
     starDetails: "Oyuncu Detayları",
+    stars:"Oyuncular",
     filmDetails: "Film Detayları",
-    films: "Filmler",
-    logout: "Çıkış Yap"
+    films: "Filmler"
   },
 };
 
