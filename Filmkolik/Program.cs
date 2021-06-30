@@ -20,6 +20,8 @@ namespace Filmkolik
                 .Enrich.WithProperty("Coder", "Tomakin")
                 .CreateLogger();
 
+            Log.Information("Starting Up!");
+
             CreateHostBuilder(args).Build().Run();
         }
 
