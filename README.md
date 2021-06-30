@@ -6,6 +6,6 @@ Projeyi çalıştırabilmek için
 * Migration ile default kullanıcıları veritabanına eklemeliyiz
 
 Migration kullanmak için
-Add-Migration <my_migration>
+Add-Migration <my_migration> akabinde
 Update-Database
 komutlarını kullanmalıyız.
