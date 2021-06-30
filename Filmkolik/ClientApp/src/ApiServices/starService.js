@@ -1,2 +1,2 @@
-import {instance} from "@/_services"
+import {instance} from "../_services/index"
 

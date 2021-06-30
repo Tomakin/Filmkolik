@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
-import { authenticationService } from '@/_services';
+import { authenticationService } from '../_services/index';
 
 function HomePage() {
     const [currentUser, setCurrentUser] = useState(authenticationService.currentUserValue)

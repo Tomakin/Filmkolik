@@ -1,16 +1,17 @@
 import React from "react";
 import { Router, Route, Switch, Link } from "react-router-dom";
-import { history } from "@/_helpers";
-import { Role } from "@/_helpers";
-import { authenticationService } from "@/_services";
-import { PrivateRoute } from "@/_components";
-import { HomePage } from "@/HomePage";
-import { LoginPage } from "@/LoginPage";
+import { history } from "../_helpers/index";
+import { Role } from "../_helpers/index";
+import { authenticationService } from "../_services/index";
+import { PrivateRoute } from "../_components/index";
+import { HomePage } from "../HomePage/index";
+import { LoginPage } from "../LoginPage/index";
 import { useState, useEffect } from "react";
 import { IntlProvider } from "react-intl";
-import { i18n } from "@/i18n";
-import { Films } from "@/Films";
-import {messages} from "@/i18n";
+import { i18n } from "../i18n/index";
+import { Films } from "../Films/index";
+import {messages} from "../i18n/index";
+import { Stars } from "../Stars/index";
 
 export function App() {
   const [currentUser, setcurrentUser] = useState({});
@@ -40,7 +41,7 @@ export function App() {
           exact
           path="/stars"
           roles={[Role.Admin, Role.StarUser]}
-          component={HomePage}
+          component={Stars}
         />
         <Route exact path="/login" component={LoginPage} />
       </Router>

@@ -1,26 +1,16 @@
 import React from "react";
-import clsx from "clsx";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 import { useIntl } from "react-intl";
-import { Link } from "react-router-dom";
-import {history} from "@/_helpers";
-import { authenticationService } from "@/_services";
+import { history } from "../_helpers/index";
+import { authenticationService } from "../_services/index";
 
 const drawerWidth = 240;
 
@@ -29,24 +19,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   appBar: {
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  hide: {
-    display: "none",
+    zIndex: theme.zIndex.drawer + 1,
   },
   drawer: {
     width: drawerWidth,
@@ -55,36 +28,23 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
   },
-  drawerHeader: {
-    display: "flex",
-    alignItems: "center",
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: "flex-end",
+  drawerContainer: {
+    overflow: "auto",
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
   },
-  contentShift: {
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
+  exitButton: {
+    display: "flex",
+    justifyContent: "",
   },
 }));
 
 export function Layout({ children, ...rest }) {
+  const intl = useIntl();
   // const intl = useIntl();
   const classes = useStyles();
-  const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
   const logout = () => {
@@ -104,79 +64,61 @@ export function Layout({ children, ...rest }) {
     history.push("/films");
   };
 
+  const handleStarsClick = () => {
+    history.push("/stars");
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" noWrap>
-            {/* {intl.formatMessage({ id: "title" })} */}
-            Filmkolik
+            {intl.formatMessage({ id: "title" })}
           </Typography>
         </Toolbar>
       </AppBar>
       <Drawer
         className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
+        variant="permanent"
         classes={{
           paper: classes.drawerPaper,
         }}
       >
-        <div className={classes.drawerHeader}>
-          <Typography>Menu</Typography>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
+        <Toolbar />
+        <div className={classes.drawerContainer}>
+          <List>
+            <ListItem
+              onClick={handleFilmsClick}
+              button
+              key={intl.formatMessage({ id: "films" })}
+            >
+              <ListItemText primary={intl.formatMessage({ id: "films" })} />
+            </ListItem>
+          </List>
+          <List>
+            <ListItem
+              onClick={handleStarsClick}
+              button
+              key={intl.formatMessage({ id: "stars" })}
+            >
+              <ListItemText primary={intl.formatMessage({ id: "stars" })} />
+            </ListItem>
+          </List>
+          <List>
+            <ListItem
+              onClick={logout}
+              button
+              key={intl.formatMessage({ id: "logout" })}
+            >
+              <ListItemText primary={intl.formatMessage({ id: "logout" })} />
+            </ListItem>
+          </List>
         </div>
-        <Divider />
-        <List>
-          <ListItem
-            onClick={handleFilmsClick}
-            button
-            // key={intl.formatMessage({ id: "films" })}
-            key="Filmler"
-          >
-            <ListItemText primary="Filmler"/*{intl.formatMessage({ id: "films" })}*/ />
-          </ListItem>
-        </List>
-        <List>
-          <ListItem button key="Oyuncular"/*{intl.formatMessage({ id: "starDetails" })}*/>
-            <ListItemText primary="Oyuncular"/*{intl.formatMessage({ id: "starDetails" })}*/ />
-          </ListItem>
-        </List>
-        <List>
-          <ListItem onClick={logout} button key="logout"/*{intl.formatMessage({ id: "logout" })}*/>
-            <ListItemText primary="logout"/*{intl.formatMessage({ id: "logout" })}*/ />
-          </ListItem>
-        </List>
-        <Divider />
       </Drawer>
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
-        <div className={classes.drawerHeader} />
+      <main className={classes.content}>
+        <Toolbar />
+        {/* <div className={classes.drawerHeader} /> */}
         {children}
       </main>
     </div>

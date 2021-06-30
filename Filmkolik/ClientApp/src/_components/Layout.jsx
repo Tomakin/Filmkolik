@@ -1,5 +1,5 @@
 import React from "react";
-import { authenticationService as auth } from "@/_services";
+import { authenticationService as auth } from "../_services/index";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -16,7 +16,7 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Link from "@material-ui/core/Link";
-import { history } from "@/_helpers";
+import { history } from "../_helpers/index";
 
 import { useIntl } from "react-intl";
 

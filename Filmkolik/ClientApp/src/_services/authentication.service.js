@@ -1,7 +1,5 @@
 import { BehaviorSubject } from "rxjs";
-
-import config from "config";
-import { handleResponse, history } from "@/_helpers";
+import { handleResponse, history } from "../_helpers/index";
 
 const currentUserSubject = new BehaviorSubject(
   JSON.parse(localStorage.getItem("currentUser"))

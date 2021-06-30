@@ -19,6 +19,7 @@ const i18n = {
     stars:"Stars",
     filmDetails: "Film Details",
     films: "films",
+    logout: "Logout"
   },
   tr: {
     title: "Filmkolik",
@@ -39,7 +40,8 @@ const i18n = {
     starDetails: "Oyuncu Detayları",
     stars:"Oyuncular",
     filmDetails: "Film Detayları",
-    films: "Filmler"
+    films: "Filmler",
+    logout: "Çıkış Yap"
   },
 };
 
