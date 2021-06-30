@@ -4,14 +4,16 @@ using Filmkolik.Data.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Filmkolik.Data.Migrations
 {
     [DbContext(typeof(EFProjectContext))]
-    partial class EFProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20210630213823_email")]
+    partial class email
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,39 +76,6 @@ namespace Filmkolik.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            CreatedDate = new DateTime(2021, 7, 1, 0, 50, 38, 430, DateTimeKind.Local).AddTicks(111),
-                            FirstName = "admin",
-                            LastName = "user",
-                            Password = "admin",
-                            Rol = 1,
-                            RolString = "Admin_Role",
-                            Username = "admin"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            CreatedDate = new DateTime(2021, 7, 1, 0, 50, 38, 430, DateTimeKind.Local).AddTicks(7667),
-                            FirstName = "film",
-                            Password = "user",
-                            Rol = 3,
-                            RolString = "FilmUser_Role",
-                            Username = "film"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            CreatedDate = new DateTime(2021, 7, 1, 0, 50, 38, 430, DateTimeKind.Local).AddTicks(7678),
-                            FirstName = "film",
-                            Password = "user",
-                            Rol = 2,
-                            RolString = "StarUser_Role",
-                            Username = "star"
-                        });
                 });
 #pragma warning restore 612, 618
         }

@@ -5,7 +5,6 @@ import { authenticationService } from '../_services/index';
 function HomePage() {
     const [currentUser, setCurrentUser] = useState(authenticationService.currentUserValue)
     useEffect(() => {
-        console.log(currentUser);
     }, [])
     return (
         <div className="col-md-6 offset-md-3">

@@ -50,6 +50,9 @@ class LoginPage extends React.Component {
                 }}
                 render={({ errors, status, touched, isSubmitting }) => (
                   <Form>
+                    <p>Admin rol bilgileri: Kullanıcı adı: admin, Parola: admin</p>
+                    <p>Film rol bilgileri: Kullanıcı adı: film, Parola: user</p>
+                    <p>Oyuncu rol bilgileri: Kullanıcı adı: star, Parola: user</p>
                     <div className="form-group">
                       <label htmlFor="username">Username</label>
                       <Field
@@ -99,7 +102,7 @@ class LoginPage extends React.Component {
                       )}
                     </div>
                     {status && (
-                      <div className={"alert alert-danger"}>{status}</div>
+                      <div className="alert alert-danger">{status}</div>
                     )}
                   </Form>
                 )}

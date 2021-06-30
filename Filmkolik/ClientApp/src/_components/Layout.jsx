@@ -80,6 +80,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Layout({ children, ...props }) {
+    alert("props");
+  console.log(props);
   const intl = useIntl();
   const classes = useStyles();
   const theme = useTheme();

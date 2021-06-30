@@ -1,5 +1,5 @@
 import axios from "axios";
-import { authenticationService, success, error } from "../_services/index";
+import { authenticationService } from "../_services/index";
 
 class httpClient {
   constructor() {

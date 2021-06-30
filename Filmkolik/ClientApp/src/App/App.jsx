@@ -19,14 +19,15 @@ export function App() {
   const [locale, setlocale] = useState("tr");
 
   useEffect(() => {
+    if (localStorage.getItem("locale")) {
+      setlocale(localStorage.getItem("tr"))
+    }
     authenticationService.currentUser.subscribe((x) => {
       setcurrentUser(x);
       x && x.role === Role.Admin;
     });
   });
-
-  console.log(history);
-
+  
   return (
     <IntlProvider locale={locale} messages={i18n[locale]}>
       <Router history={history}>

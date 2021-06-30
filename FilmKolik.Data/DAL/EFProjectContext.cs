@@ -15,5 +15,40 @@ namespace Filmkolik.Data.DAL
 
         public DbSet<User> Users { get; set; }
         public DbSet<FilmDetail> FilmDetails { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    ID = 1,
+                    Username = "admin",
+                    Password = "admin",
+                    CreatedDate = DateTime.Now,
+                    FirstName = "admin",
+                    LastName = "user",
+                    Rol = Enums.Roller.Admin
+                },
+                new User
+                {
+                    ID = 2,
+                    Username = "film",
+                    Password = "user",
+                    CreatedDate = DateTime.Now,
+                    FirstName = "film",
+                    Rol = Enums.Roller.FilmUser
+                },
+                new User
+                {
+                    ID = 3,
+                    Username = "star",
+                    Password = "user",
+                    CreatedDate = DateTime.Now,
+                    FirstName = "film",
+                    Rol = Enums.Roller.StarUser
+                }
+                );
+        }
     }
 }

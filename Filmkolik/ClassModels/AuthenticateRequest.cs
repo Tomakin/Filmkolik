@@ -14,4 +14,11 @@ namespace Filmkolik.ClassModels
         [Required]
         public string Password { get; set; }
     }
+
+    public class FilmModel
+    {
+        public int ID { get; set; }
+        public string FilmName { get; set; }
+        public string FilmImageUrl { get; set; }
+    }
 }

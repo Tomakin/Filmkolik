@@ -38,9 +38,10 @@ module.exports = {
     ],
   },
   resolve: {
+    root:[path.resolve('./src')],
     extensions: [".js", ".jsx"],
     alias: {
-      "@": path.resolve(__dirname, "../"),
+      '@': path.resolve(__dirname, "./src"),
     },
   },
   plugins: [
