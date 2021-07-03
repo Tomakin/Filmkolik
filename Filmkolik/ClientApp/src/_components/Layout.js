@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     flexShrink: 0,
   },
   drawerPaper: {
-    width: drawerWidth,
+    width: drawerWidth
   },
   drawerContainer: {
     overflow: "auto",
@@ -116,7 +116,7 @@ export function Layout({ children, ...rest }) {
           </List>
         </div>
       </Drawer>
-      <main className={classes.content}>
+      <main id='main' className={classes.content}>
         <Toolbar />
         {/* <div className={classes.drawerHeader} /> */}
         {children}

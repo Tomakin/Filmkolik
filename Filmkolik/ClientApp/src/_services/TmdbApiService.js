@@ -8,7 +8,7 @@ class TmdbApiService {
     this.starKeyword = "person";
     this.imageUrl = "http://image.tmdb.org/t/p/";
     this.sizes = {
-      little: "w154",
+      little: "w500",
       big: "original",
     };
 
@@ -24,7 +24,20 @@ class TmdbApiService {
   //Movie
   async getMovie(movieId) {
     try {
-      const resp = await this.axiosInstencer.get(`${movieKeyword}/${movieId}`);
+      const resp = await this.axiosInstencer.get(
+        `${this.movieKeyword}/${movieId}`
+      );
+      return resp;
+    } catch (errorResp) {
+      return Promise.reject(errorResp);
+    }
+  }
+
+  async getCredits(movieId) {
+    try {
+      const resp = await this.axiosInstencer.get(
+        `${this.movieKeyword}/${movieId}/credits`
+      );
       return resp;
     } catch (errorResp) {
       return Promise.reject(errorResp);
@@ -41,10 +54,14 @@ class TmdbApiService {
     }
   }
 
-  getImage(image) {
+  getLittleImage(image) {
     return `${this.imageUrl}${this.sizes.little}${image}`;
+  }
+
+  getOriginalImage(image) {
+    return `${this.imageUrl}${this.sizes.big}${image}`;
   }
 }
 
-const tbdmInstancer = new TmdbApiService();
-export { tbdmInstancer };
+const tmdbInstancer = new TmdbApiService();
+export { tmdbInstancer };
