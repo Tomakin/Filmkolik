@@ -37,6 +37,7 @@ namespace Filmkolik.Data.DAL
                     Password = "user",
                     CreatedDate = DateTime.Now,
                     FirstName = "film",
+                    LastName = "user",
                     Rol = Enums.Roller.FilmUser
                 },
                 new User
@@ -46,6 +47,7 @@ namespace Filmkolik.Data.DAL
                     Password = "user",
                     CreatedDate = DateTime.Now,
                     FirstName = "film",
+                    LastName = "user",
                     Rol = Enums.Roller.StarUser
                 }
                 );

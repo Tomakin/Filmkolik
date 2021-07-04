@@ -35,8 +35,8 @@ namespace Filmkolik.Data.Migrations
                     b.Property<string>("Not")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Score")
-                        .HasColumnType("decimal(18,4)");
+                    b.Property<int>("Score")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -65,9 +65,6 @@ namespace Filmkolik.Data.Migrations
                     b.Property<int>("Rol")
                         .HasColumnType("int");
 
-                    b.Property<string>("RolString")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
@@ -79,32 +76,31 @@ namespace Filmkolik.Data.Migrations
                         new
                         {
                             ID = 1,
-                            CreatedDate = new DateTime(2021, 7, 1, 0, 50, 38, 430, DateTimeKind.Local).AddTicks(111),
+                            CreatedDate = new DateTime(2021, 7, 4, 11, 6, 27, 546, DateTimeKind.Local).AddTicks(4394),
                             FirstName = "admin",
                             LastName = "user",
                             Password = "admin",
                             Rol = 1,
-                            RolString = "Admin_Role",
                             Username = "admin"
                         },
                         new
                         {
                             ID = 2,
-                            CreatedDate = new DateTime(2021, 7, 1, 0, 50, 38, 430, DateTimeKind.Local).AddTicks(7667),
+                            CreatedDate = new DateTime(2021, 7, 4, 11, 6, 27, 546, DateTimeKind.Local).AddTicks(5338),
                             FirstName = "film",
+                            LastName = "user",
                             Password = "user",
                             Rol = 3,
-                            RolString = "FilmUser_Role",
                             Username = "film"
                         },
                         new
                         {
                             ID = 3,
-                            CreatedDate = new DateTime(2021, 7, 1, 0, 50, 38, 430, DateTimeKind.Local).AddTicks(7678),
+                            CreatedDate = new DateTime(2021, 7, 4, 11, 6, 27, 546, DateTimeKind.Local).AddTicks(5341),
                             FirstName = "film",
+                            LastName = "user",
                             Password = "user",
                             Rol = 2,
-                            RolString = "StarUser_Role",
                             Username = "star"
                         });
                 });

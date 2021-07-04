@@ -1,6 +1,7 @@
 ﻿using Filmkolik.Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,13 +17,15 @@ namespace Filmkolik.Entities.Entity
         public string LastName { get; set; }
         public string Password { get; set; }
         public Roller Rol { get; set; }
+        [NotMapped]
         public string RolString
         {
             get
             {
                 return Enums.roleString[this.Rol];
             }
-            set {
+            set
+            {
                 rol = value;
             }
         }

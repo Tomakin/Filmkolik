@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { tmdbInstancer } from "../_services/index";
+import { filmService, tmdbInstancer } from "../_services/index";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
@@ -32,12 +32,25 @@ const useStyles = makeStyles((theme) => ({
   prodComps: {
     color: Color("rgb(255, 255, 255)").string(),
   },
+  actors: {
+    color: Color("rgb(255, 255, 255)").string(),
+  },
+  textarea: {
+    width: "100%",
+    height: "100px",
+    padding: theme.spacing(3, 2),
+    height: 200,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center"
+  },
 }));
 
 function FilmDetail(props) {
   const Id = props.location.state.Id;
   const [film, setFilm] = useState({});
   const [credits, setCredits] = useState({});
+  const [filmDetails, setFilmDetails] = useState({});
 
   const classes = useStyles();
 
@@ -47,6 +60,9 @@ function FilmDetail(props) {
     });
     tmdbInstancer.getCredits(Id).then((c) => {
       setCredits(c.data);
+    });
+    filmService.getMovieDetails(Id).then((d) => {
+      setFilmDetails(d.data);
     });
   }, []);
 
@@ -70,16 +86,15 @@ function FilmDetail(props) {
       <Container>
         <Paper className={classes.paperBgColor}>
           <Grid container>
-            <Grid xs={3}>
+            <Grid md={4} item>
               <Box
                 component="img"
-                maxHeight="500px"
                 maxWidth="100%"
                 alt="The house from the offer."
                 src={tmdbInstancer.getLittleImage(film.poster_path)}
               />
             </Grid>
-            <Grid md={9}>
+            <Grid md={8} item>
               <Typography className={classes.movieName}>
                 {film.original_title}
               </Typography>
@@ -95,7 +110,8 @@ function FilmDetail(props) {
               </Box>
               <Box p={3}>
                 <Typography className={classes.genre}>
-                  {film.genres && film.genres.map((genre) => genre.name).join(', ')}
+                  {film.genres &&
+                    film.genres.map((genre) => genre.name).join(", ")}
                 </Typography>
               </Box>
               <Box px={3}>
@@ -105,6 +121,16 @@ function FilmDetail(props) {
                       .map((comp) => comp.name)
                       .join(", ")}
                 </Typography>
+              </Box>
+              <Box p={3}>
+                <Typography className={classes.actors}>
+                  {actors && actors.map((actors) => actors.name).join(", ")}
+                </Typography>
+              </Box>
+              <Box px={3}>
+                <textarea className={classes.textarea}>
+                  {filmDetails.not}
+                </textarea>
               </Box>
             </Grid>
           </Grid>

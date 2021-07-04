@@ -11,6 +11,6 @@ namespace Filmkolik.Entities.Entity
     {
         [Key]
         public int ID { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
     }
 }

@@ -1,23 +1,33 @@
 ﻿using Filmkolik.ClassModels;
+using Filmkolik.Entities.Entity;
+using Filmkolik.Library.Functions;
 using Filmkolik.Services.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static Filmkolik.Entities.Entity.Enums;
 
 namespace Filmkolik.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize(Roles = "Admin_Role")]
+    //[Authorize(Roles = "FilmUser_Role")]
+    //[Authorize]
     public class FilmsController : ControllerBase
     {
         IDatabaseService _db;
+        FilmDetailsFn _filmDetailFn;
         List<FilmModel> films;
-        public FilmsController(IDatabaseService db)
+        public FilmsController(IDatabaseService db, FilmDetailsFn filmDetailsFn)
         {
             _db = db;
+            _filmDetailFn = filmDetailsFn;
+
             films = new List<FilmModel>()
             {
                 new FilmModel
@@ -47,10 +57,11 @@ namespace Filmkolik.Controllers
             return Ok(films.FirstOrDefault(fod => fod.ID == id));
         }
 
-        [HttpPost("getFilmDetail")]
-        public IActionResult GetFilmDetail(int filmDetailID)
+        [HttpGet("getFilmDetails/{id}")]
+        public IActionResult GetFilmDetails(int id)
         {
-            return Ok(_db.FilmDetail.GetByID(filmDetailID));
+            FilmDetail detail = _filmDetailFn.getFilmDetail(id);
+            return Ok(detail);
         }
     }
 }

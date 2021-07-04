@@ -33,14 +33,11 @@ namespace Filmkolik
         public void ConfigureServices(IServiceCollection services)
         {
             SettingsFn.CreateDatabaseService(services, Configuration, env);
-
             services.AddControllersWithViews();
-
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-
             services.AddScoped<IDatabaseService, EfDatabaseService>();
-
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<FilmDetailsFn>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -69,7 +66,9 @@ namespace Filmkolik
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = false,
-                    ValidateAudience = false
+                    ValidateAudience = false,
+                    RequireExpirationTime = true,
+                    ValidateLifetime = true
                 };
                 x.Events = new JwtBearerEvents
                 {
@@ -88,6 +87,7 @@ namespace Filmkolik
                     }
                 };
             });
+            services.AddAuthorization();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

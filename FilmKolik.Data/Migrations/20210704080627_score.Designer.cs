@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Filmkolik.Data.Migrations
 {
     [DbContext(typeof(EFProjectContext))]
-    [Migration("20210617201322_init")]
-    partial class init
+    [Migration("20210704080627_score")]
+    partial class score
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,8 +37,8 @@ namespace Filmkolik.Data.Migrations
                     b.Property<string>("Not")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Score")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("Score")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -55,11 +55,17 @@ namespace Filmkolik.Data.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Rol")
+                        .HasColumnType("int");
 
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
@@ -67,6 +73,38 @@ namespace Filmkolik.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CreatedDate = new DateTime(2021, 7, 4, 11, 6, 27, 546, DateTimeKind.Local).AddTicks(4394),
+                            FirstName = "admin",
+                            LastName = "user",
+                            Password = "admin",
+                            Rol = 1,
+                            Username = "admin"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CreatedDate = new DateTime(2021, 7, 4, 11, 6, 27, 546, DateTimeKind.Local).AddTicks(5338),
+                            FirstName = "film",
+                            LastName = "user",
+                            Password = "user",
+                            Rol = 3,
+                            Username = "film"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CreatedDate = new DateTime(2021, 7, 4, 11, 6, 27, 546, DateTimeKind.Local).AddTicks(5341),
+                            FirstName = "film",
+                            LastName = "user",
+                            Password = "user",
+                            Rol = 2,
+                            Username = "star"
+                        });
                 });
 #pragma warning restore 612, 618
         }

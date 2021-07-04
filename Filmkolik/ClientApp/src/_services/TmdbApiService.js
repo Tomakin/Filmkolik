@@ -3,6 +3,7 @@ import axios from "axios";
 class TmdbApiService {
   constructor() {
     const tmdbApiKey = "d33930af25951e9b7724219a7973019a";
+    const language = "en"
     const baseUrl = "https://api.themoviedb.org/3/";
     this.movieKeyword = "movie";
     this.starKeyword = "person";
@@ -16,6 +17,7 @@ class TmdbApiService {
       baseURL: baseUrl,
       params: {
         api_key: tmdbApiKey,
+        language: language
       },
     });
     this.axiosInstencer = instancer;
