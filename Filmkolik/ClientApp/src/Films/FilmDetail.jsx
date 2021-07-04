@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import { filmService, tmdbInstancer } from "../_services/index";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import Color from "color";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import Rating from "react-rating";
+import yellow from "../assets-images/star-yellow.png";
+import grey from "../assets-images/star-grey.png";
 
 const useStyles = makeStyles((theme) => ({
   paperBgColor: {
@@ -39,10 +43,22 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "100px",
     padding: theme.spacing(3, 2),
-    height: 200,
+    height: "100px",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center"
+    justifyContent: "center",
+  },
+  rating: {
+    textAlign: "end",
+  },
+  border: {
+    borderColor: theme.palette.primary.dark,
+    border: "3px solid",
+    borderRadius: "16px",
+  },
+  icon: {
+    width: "26px",
+    height: "26px",
   },
 }));
 
@@ -66,6 +82,16 @@ function FilmDetail(props) {
     });
   }, []);
 
+  const handleRating = (value) => {
+    setFilmDetails({ ...filmDetails, score: value });
+  };
+  const textareaOnChangeHandler = () => {
+    setFilmDetails({ ...filmDetails, not: event.target.value });
+  };
+  const handleButtonOnclick = () => {
+    filmService.addFilmDetail(filmDetails);
+  };
+
   if (film.backdrop_path && document.getElementById("main")) {
     var main = document.getElementById("main");
     main.style.backgroundImage = `url(${tmdbInstancer.getOriginalImage(
@@ -86,15 +112,16 @@ function FilmDetail(props) {
       <Container>
         <Paper className={classes.paperBgColor}>
           <Grid container>
-            <Grid md={4} item>
+            <Grid md={5} item>
               <Box
                 component="img"
                 maxWidth="100%"
+                height="100%"
                 alt="The house from the offer."
                 src={tmdbInstancer.getLittleImage(film.poster_path)}
               />
             </Grid>
-            <Grid md={8} item>
+            <Grid md={7} item>
               <Typography className={classes.movieName}>
                 {film.original_title}
               </Typography>
@@ -127,10 +154,35 @@ function FilmDetail(props) {
                   {actors && actors.map((actors) => actors.name).join(", ")}
                 </Typography>
               </Box>
-              <Box px={3}>
-                <textarea className={classes.textarea}>
-                  {filmDetails.not}
-                </textarea>
+              <Box p={3}>
+                <Box className={classes.rating} px={3}>
+                  <Rating
+                    stop={10}
+                    placeholderRating={filmDetails.score}
+                    placeholderSymbol={
+                      <img src={yellow} className={classes.icon} />
+                    }
+                    emptySymbol={<img src={grey} className={classes.icon} />}
+                    fullSymbol={<img src={yellow} className={classes.icon} />}
+                    onChange={handleRating}
+                  />
+                </Box>
+                <textarea
+                  className={classes.textarea}
+                  value={filmDetails.not}
+                  placeholder={filmDetails.not}
+                  // onChange = {(event) => {setFilmDetails({event, ...filmDetails})}}
+                  onChange={textareaOnChangeHandler}
+                />
+              </Box>
+              <Box p={3} display="flex" flexDirection="row-reverse">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleButtonOnclick}
+                >
+                  Rate
+                </Button>
               </Box>
             </Grid>
           </Grid>

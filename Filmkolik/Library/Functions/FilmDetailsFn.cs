@@ -26,7 +26,21 @@ namespace Filmkolik.Library.Functions
                 });
                 _db.SaveChanges();
             }
+            detail = _db.FilmDetail.Get(film => film.FilmID == id);
             return detail;
+        }
+
+        public void addFilmDetail(FilmDetail detail)
+        {
+            FilmDetail filmDetail = _db.FilmDetail.Get(film => film.FilmID == detail.FilmID);
+            if (filmDetail != null)
+            {
+                filmDetail.Not = detail.Not;
+                filmDetail.Score = detail.Score;
+                _db.FilmDetail.Update(filmDetail);
+                _db.SaveChanges();
+            }
+
         }
     }
 }

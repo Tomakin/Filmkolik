@@ -63,5 +63,12 @@ namespace Filmkolik.Controllers
             FilmDetail detail = _filmDetailFn.getFilmDetail(id);
             return Ok(detail);
         }
+
+        [HttpPost("addFilmDetails")]
+        public IActionResult AddFilmDetails(FilmDetail detail)
+        {
+            _filmDetailFn.addFilmDetail(detail);
+            return Ok();
+        }
     }
 }
