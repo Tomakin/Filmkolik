@@ -1,9 +1,10 @@
 import axios from "axios";
 import { authenticationService } from "../_services/index";
+import {success, error} from '../_helpers'
 
 class httpClient {
   constructor() {
-    const stringUser = localStorage.getItem("BankConverterToken");
+    const stringUser = localStorage.getItem("currentUser");
     const userObject = JSON.parse(stringUser) || "{}";
     const token = userObject.token || "{}"; 
 

@@ -48,7 +48,7 @@ namespace Filmkolik.Library.Functions
             var key = Encoding.ASCII.GetBytes(_appSettings.Value.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.ID.ToString()), new Claim("role", user.RolString) }),
+                Subject = new ClaimsIdentity(new[] { new Claim("id", user.ID.ToString()), new Claim(ClaimTypes.Role, user.RolString) }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

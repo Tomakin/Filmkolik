@@ -8,16 +8,17 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using static Filmkolik.Entities.Entity.Enums;
+using static Filmkolik.Library.Helpers.ClaimRole;
 
 namespace Filmkolik.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Roles = "Admin_Role")]
-    //[Authorize(Roles = "FilmUser_Role")]
-    //[Authorize]
+    [ClaimRequirement(ClaimTypes.Role, "Admin_Role", "FilmUser_Role")]
+    [Authorize]
     public class FilmsController : ControllerBase
     {
         IDatabaseService _db;

@@ -86,7 +86,7 @@ function FilmDetail(props) {
     setFilmDetails({ ...filmDetails, score: value });
   };
   const textareaOnChangeHandler = () => {
-    setFilmDetails({ ...filmDetails, not: event.target.value });
+    setFilmDetails({ ...filmDetails, not: Event.target.value });
   };
   const handleButtonOnclick = () => {
     filmService.addFilmDetail(filmDetails);

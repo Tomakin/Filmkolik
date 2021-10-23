@@ -12,10 +12,10 @@ import { i18n } from "../i18n/index";
 import { Films, FilmDetail } from "../Films/index";
 import { Stars } from "../Stars/index";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { ToastContainer } from "react-toastify";
 
 export function App() {
   const [currentUser, setcurrentUser] = useState({});
-  const [isAdmin, setisAdmin] = useState(false);
   const [locale, setlocale] = useState("tr");
 
   useEffect(() => {
@@ -24,7 +24,6 @@ export function App() {
     }
     authenticationService.currentUser.subscribe((x) => {
       setcurrentUser(x);
-      x && x.role === Role.Admin;
     });
   });
 
@@ -64,6 +63,7 @@ export function App() {
         </ThemeProvider>
         <Route exact path="/login" component={LoginPage} />
       </Router>
+      <ToastContainer/>
     </IntlProvider>
   );
 }

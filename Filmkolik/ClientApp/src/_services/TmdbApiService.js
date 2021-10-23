@@ -49,7 +49,7 @@ class TmdbApiService {
   //Star
   async getStar(starId) {
     try {
-      const resp = await this.axiosInstencer.get(`${starKeyword}/${starId}`);
+      const resp = await this.axiosInstencer.get(`${this.starKeyword}/${starId}`);
       return resp;
     } catch (errorResp) {
       return Promise.reject(errorResp);
