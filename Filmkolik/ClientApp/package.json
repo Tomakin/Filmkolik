@@ -1,7 +1,11 @@
 {
-  "name": "clientapp",
-  "version": "0.1.0",
-  "private": true,
+  "name": "filmkolik",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tomakin/Filmkolik.git"
+  },
+  "license": "MIT",
   "dependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
